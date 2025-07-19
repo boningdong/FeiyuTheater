@@ -1,25 +1,116 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
-layout: home
+layout: default
 js: home.js
+title: "非鱼剧社"
+hero:
+  title: "萨勒姆的女巫"
+  date: "2025年6月8日 2:00PM"
+  location: "SJSU Hammer Theatre, San Jose, CA"
+  background_image: "/assets/imgs/hero-banner.png"
+  countdown:
+    days: 89
+    hours: 20
+    minutes: 13
+    seconds: 03
+recent_activities:
+  - title: "话剧《这个男人来自地球》"
+    date: "2025-06-08"
+    location: "SJSU Hammer Theatre, San Jose, CA"
+    image: "/assets/images/activities/man-from-earth-activity.jpg"
+    description: "来到有趣，备受争议的历史共同体诗与音频曲突然让大旧朝连贯论文者诗经。天生历史的人类归属于不同音，并把来朱可行的四个年中和交纳的中土，古诗词说说，不过现在关头的，大国里论历史到青连变的诗不属化的系数诗史，诗歌，通过处置有的书本个，通国发物候器重传是。"
+    link: "/prev-work/the-man-from-earth/"
+  - title: "话剧《娜拉归来2》"
+    date: "2025-03-08"
+    location: "SJSU Hammer Theatre, San Jose, CA"
+    image: "/assets/images/activities/dolls-house-activity.jpg"
+    description: "来到有趣，备受争议的历史共同体诗与音频曲突然让大旧朝连贯论文者诗经。天生历史的人类归属于不同音，并把来朱可行的四个年中和交纳的中土，古诗词说说，不过现在关头的，大国里论历史到青连变的诗不属化的系数诗史，诗歌，通过处置有的书本个，通国发物候器重传是。"
+    link: "/prev-work/dolls-house/"
 ---
 
-<!-- Page Banner Section -->
-<section id="banner" class="banner">
-    <h1 class="title mb-4">Banner Placeholder</h1>
+<!-- Hero Banner Section -->
+<section class="hero-section">
+  <div class="hero-background" style="background-image: url('{{ page.hero.background_image }}');">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">{{ page.hero.title }}</h1>
+          <div class="hero-meta">
+            <p class="hero-date">{{ page.hero.date }}</p>
+            <p class="hero-location">地点：{{ page.hero.location }}</p>
+          </div>
+          <a href="/tickets" class="hero-cta-button">点击购票</a>
+          
+          <!-- Countdown Timer -->
+          <div class="countdown-section">
+            <p class="countdown-label">距离演出还有时间:</p>
+            <div class="countdown-timer">
+              <div class="countdown-item">
+                <span class="countdown-number">{{ page.hero.countdown.days }}</span>
+                <span class="countdown-unit">Days</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number">{{ page.hero.countdown.hours }}</span>
+                <span class="countdown-unit">Hours</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number">{{ page.hero.countdown.minutes }}</span>
+                <span class="countdown-unit">Mins</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number">{{ page.hero.countdown.seconds }}</span>
+                <span class="countdown-unit">Secs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <h2 class="m-4">Subheading</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-        <div class="col-md-6">
-            <h2 class="m-4">Subheading</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
+<!-- Recent Activities Section -->
+<section class="recent-activities-section">
+  <div class="container">
+    <h2 class="section-title">近期活动</h2>
+    <div class="activities-list">
+      {% for activity in page.recent_activities %}
+        <article class="activity-item">
+          <div class="activity-image">
+            <img src="{{ activity.image }}" alt="{{ activity.title }}">
+          </div>
+          <div class="activity-content">
+            <div class="activity-date">{{ activity.date }}</div>
+            <h3 class="activity-title">{{ activity.title }}</h3>
+            <p class="activity-location">地点：{{ activity.location }}</p>
+            <p class="activity-description">{{ activity.description }}</p>
+            <a href="{{ activity.link }}" class="activity-cta">点击查看</a>
+          </div>
+        </article>
+      {% endfor %}
     </div>
-</div>
+  </div>
+</section>
+
+<!-- Previous Works Preview Section -->
+<section class="prev-works-preview-section">
+  <div class="container">
+    <h2 class="section-title">往期作品</h2>
+    <div class="preview-works-grid">
+      <!-- {% assign preview_works = site.works | limit: 3 %} -->
+      {% for work in site.works | limit: 3 %}
+        <!-- {% if work.work_details %} -->
+          <a href="{{ work.url | relative_url }}" class="work-link">
+            {% include components/card.html 
+               image=work.work_details.poster_image 
+               date=work.work_details.date 
+               title=work.work_details.title 
+            %}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="view-more-section">
+      <a href="{{ '/prev-work' | relative_url }}" class="view-more-button">查看更多</a>
+    </div>
+  </div>
+</section>
