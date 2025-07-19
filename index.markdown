@@ -12,19 +12,6 @@ hero:
     hours: 20
     minutes: 13
     seconds: 03
-recent_activities:
-  - title: "话剧《这个男人来自地球》"
-    date: "2025-06-08"
-    location: "SJSU Hammer Theatre, San Jose, CA"
-    image: "/assets/images/activities/man-from-earth-activity.jpg"
-    description: "来到有趣，备受争议的历史共同体诗与音频曲突然让大旧朝连贯论文者诗经。天生历史的人类归属于不同音，并把来朱可行的四个年中和交纳的中土，古诗词说说，不过现在关头的，大国里论历史到青连变的诗不属化的系数诗史，诗歌，通过处置有的书本个，通国发物候器重传是。"
-    link: "/prev-work/the-man-from-earth/"
-  - title: "话剧《娜拉归来2》"
-    date: "2025-03-08"
-    location: "SJSU Hammer Theatre, San Jose, CA"
-    image: "/assets/images/activities/dolls-house-activity.jpg"
-    description: "来到有趣，备受争议的历史共同体诗与音频曲突然让大旧朝连贯论文者诗经。天生历史的人类归属于不同音，并把来朱可行的四个年中和交纳的中土，古诗词说说，不过现在关头的，大国里论历史到青连变的诗不属化的系数诗史，诗歌，通过处置有的书本个，通国发物候器重传是。"
-    link: "/prev-work/dolls-house/"
 ---
 
 <!-- Hero Banner Section -->
@@ -73,13 +60,13 @@ recent_activities:
   <div class="container">
     <h2 class="section-title">近期活动</h2>
     <div class="activities-list">
-      {% for activity in page.recent_activities %}
+      {% for activity in site.activities %}
         <article class="activity-item">
           <div class="activity-image">
             <img src="{{ activity.image }}" alt="{{ activity.title }}">
           </div>
           <div class="activity-content">
-            <div class="activity-date">{{ activity.date }}</div>
+            <div class="activity-date">{{ activity.date_str }}</div>
             <h3 class="activity-title">{{ activity.title }}</h3>
             <p class="activity-location">地点：{{ activity.location }}</p>
             <p class="activity-description">{{ activity.description }}</p>
@@ -96,8 +83,8 @@ recent_activities:
   <div class="container">
     <h2 class="section-title">往期作品</h2>
     <div class="preview-works-grid">
-      <!-- {% assign preview_works = site.works | limit: 3 %} -->
-      {% for work in site.works | limit: 3 %}
+      {% assign preview_works = site.works | limit: 3 %}
+      {% for work in preview_works %}
         <!-- {% if work.work_details %} -->
           <a href="{{ work.url | relative_url }}" class="work-link">
             {% include components/card.html 
